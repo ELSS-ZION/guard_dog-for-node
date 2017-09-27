@@ -12,22 +12,18 @@ $ npm install guard_dog
 ```
 ---
 ## Usage
-1. require( `module_name` )
-``` js
-const guard_dog = require('guard_dog')
-```
 
-2. guard_dog.setLoader( `key`, `loader` )
++ guard_dog.setLoader( `key`, `loader` )
 
     `guard_dog` will refresh this data with this key by call this `loader` when it need.
-    + loader format:
+    - loader format:
     ```
     (handler) => {
         handler()
     }
     ```
 
-    + handler( `data`, `expires_in`, `ahead` )
+    - handler( `data`, `expires_in`, `ahead` )
     ```
     data: Data need to store, can be string or json object.
 
@@ -36,14 +32,14 @@ const guard_dog = require('guard_dog')
     ahead: Unit is second, defualt is 2s. It means guard_dog will refresh data 2s earlier before it expired by default.
     ```
 
-    + note: if (`expires_in` - `ahead` <= 0), it will never be refreshed.
+    - note: if (`expires_in` - `ahead` <= 0), it will never be refreshed.
 ``` js
 guard_dog.setLoader('KEY', (handler) => {
     handler(data, 3) // It will be refreshed every second
 })
 ```
 
-3. guard_dog.get( `key`, `callback` )
++ guard_dog.get( `key`, `callback` )
 ``` js
 guard_dog.get('KEY', (data) => {
     console.log(data)
