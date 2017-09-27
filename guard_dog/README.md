@@ -13,7 +13,7 @@ $ npm install guard_dog
 ---
 ## Usage
 
-+ guard_dog.setLoader( `key`, `loader` )
+1. guard_dog.setLoader( `key`, `loader` )
 
     `guard_dog` will refresh this data with this key by call this `loader` when it need.
     - loader format:
@@ -39,7 +39,8 @@ guard_dog.setLoader('KEY', (handler) => {
 })
 ```
 
-+ guard_dog.get( `key`, `callback` )
+2. guard_dog.get( `key`, `callback` )
+
 ``` js
 guard_dog.get('KEY', (data) => {
     console.log(data)
