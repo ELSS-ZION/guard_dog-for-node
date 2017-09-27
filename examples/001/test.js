@@ -4,7 +4,7 @@ guard_dog.setLoader('ABC', (handler) => {
     // simulate network request
     setTimeout(() => {
         handler(data++, 3)
-    }, 1000)
+    }, 500)
 })
 
 guard_dog.get('ABC', (data) => {

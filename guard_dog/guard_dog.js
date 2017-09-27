@@ -62,12 +62,12 @@ function get(key, callback) {
 
 exports.setLoader = function (key, loader) {
     var obj = cache[key] = {}
-    cache[key].loader = function (callback) {
+    obj.loader = function (callback) {
         var time = new Date().getTime()
         loader((data, expires_in, ahead) => {
             expires_in = typeof(expires_in)=='undefined' ? 0 : expires_in
             ahead = typeof(ahead)=='undefined' ? 2 : ahead
-            cache[key].props = {
+            obj.props = {
                 data: data,
                 expires_in: expires_in,
                 gen_time: time,

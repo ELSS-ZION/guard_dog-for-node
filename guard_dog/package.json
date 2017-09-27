@@ -1,0 +1,20 @@
+{
+  "name": "guard_dog",
+  "version": "1.0.0",
+  "description": "+ Data Persistence ( data will be save in a .dog file as json ) + Memory Cache ( guard_dog.get( ) ) + Auto Timed Refresh ( handler( ) )",
+  "main": "guard_dog.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ELSS-ZION/guard_dog-for-node/tree/master/guard_dog"
+  },
+  "keywords": [
+    "persistence",
+    "cache",
+    "refresh"
+  ],
+  "author": "elss-zion",
+  "license": "MIT"
+}
