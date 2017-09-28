@@ -33,6 +33,7 @@ function start(key) {
         start(key)
     })
 }
+
 exports.get = function (key, callback) {
     var obj = cache[key]
     if (!obj.cb_queue) {
@@ -55,13 +56,13 @@ function get(key, callback) {
     if (!obj.props) {
         var str = fs.readFileSync(fileName, 'utf-8')
         obj.props = JSON.parse(str)
-        log(key, 'readed')
+        log(key, 'file be read')
         resetTimeout(obj)
     }
     var now = new Date().getTime()
     var expries_time = obj.props.expires_in * 1000 + obj.props.gen_time
     if (expries_time < now) {
-        log(key, 'expired')
+        log(key, 'data expired')
         obj.loader(() => {
             callback(obj.props.data)
         })
@@ -101,7 +102,7 @@ exports.init = function (key, loader, dir) {
                 callback()
             }
             obj.isLoading = false
-            log(key, 'done')
+            log(key, 'loaded')
             resetTimeout(obj)
         })
     }
@@ -131,7 +132,8 @@ function log() {
         arr.shift()
         arr.unshift('[' + arguments[0] + ']')
     }
-    arr.unshift('guard_dog:')
+    arr.unshift('\x1b[36mguard_dog:')
+    arr.push('\x1b[0m')
     console.log.apply(this, arr)
 }
 exports.debug = false
