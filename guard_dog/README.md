@@ -21,7 +21,7 @@ $ npm install guard_dog
 
 #### loader:
 
-``` js
+```js
 (handler) => {
     handler()
 }
@@ -36,8 +36,7 @@ $ npm install guard_dog
 
 Note: If (`expires_in` - `ahead` <= 0), it will never be refreshed.
 
-#### Example:
-``` js
+```js
 guard_dog.setLoader('KEY', (handler) => {
     handler(data, 3) // It will be refreshed every second
 })
@@ -49,8 +48,7 @@ guard_dog.setLoader('KEY', (handler) => {
 
 Before calling this function, `guard_dog.init()` must be called.
 
-#### Example:
-``` js
+```js
 guard_dog.get('KEY', (data) => {
     console.log(data)
 })

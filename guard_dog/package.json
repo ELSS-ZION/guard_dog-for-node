@@ -1,7 +1,7 @@
 {
   "name": "guard_dog",
-  "version": "3.1.1",
-  "description": "+ Data Persistence ( data will be save in a .dog file as json ) + Memory Cache ( guard_dog.get( ) ) + Auto Timed Refresh ( handler( ) )",
+  "version": "3.1.2",
+  "description": "[ Data Persistence ]  [ Memory Cache ]  [ Auto Timed Refresh ]",
   "main": "guard_dog.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +13,8 @@
   "keywords": [
     "persistence",
     "cache",
-    "refresh"
+    "refresh",
+    "database"
   ],
   "author": "elss-zion",
   "license": "MIT"
