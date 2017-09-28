@@ -15,28 +15,28 @@ $ npm install guard_dog
 
 ### guard_dog.init( `key`, `loader`, `dir`)
 
-+ `key` *< string >* the key of data cache
-+ `loader` *< function >* `guard_dog` will refresh this data with this key by call this `loader` when it need.
-+ `dir`  *< string >*  Specify .dog file stored directory
++ `key` *< string, required >* The key of data, the name of the **.dog** file.
++ `loader` *< function, required >* Will refresh this data by call this function when it needs.
++ `dir`  *< string, optional >* The **.dog** file stored directory.
 
-loader format:
+#### loader:
 
-> (handler) => {
->   handler()
-> }
+``` js
+(handler) => {
+    handler()
+}
+```
 
-handler( `data`, `expires_in`, `ahead` )
+#### handler( `data`, `expires_in`, `ahead` )
 
-> data: Data need to store, can be string or json object.
-> 
-> expires_in:  Unit is second, data only availability during this time.
-> 
-> ahead: Unit is second, defualt is 2s. It means guard_dog will refresh data 2s earlier before it expired by default.
+- `data` *< string/object, required >* Data need to store.
+- `expires_in` *< integer, required >*  Unit is second, data only availability during this time.
+- `ahead` *< integer, optional >* Unit is second, defualt is 2s. It means guard_dog will refresh data 2s earlier before it expired by default.
 
 
-Note: if (`expires_in` - `ahead` <= 0), it will never be refreshed.
+Note: If (`expires_in` - `ahead` <= 0), it will never be refreshed.
 
-Example:
+#### Example:
 ``` js
 guard_dog.setLoader('KEY', (handler) => {
     handler(data, 3) // It will be refreshed every second
@@ -44,12 +44,12 @@ guard_dog.setLoader('KEY', (handler) => {
 ```
 
 ### guard_dog.get( `key`, `callback` )
-+ `key` *< string >* the key you pass when you call `guard_dog.init()`
-+ `callback` *< function >* `(data) => {}`
++ `key` *< string, required >* The key you pass when you call `guard_dog.init()`
++ `callback` *< function, required >* `(data) => {}`
 
-Before call this function, must call `guard_dog.init()`
+Before calling this function, `guard_dog.init()` must be called.
 
-Example:
+#### Example:
 ``` js
 guard_dog.get('KEY', (data) => {
     console.log(data)

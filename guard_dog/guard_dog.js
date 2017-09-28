@@ -2,8 +2,6 @@ const fs = require('fs')
 const path = require('path')
 const extname = '.dog'
 const cache = {}
-const query = []
-var isStarting = false
 /*
     cache = {
         KEY: {
@@ -16,28 +14,32 @@ var isStarting = false
                 ahead: AHEAD
             },
             isLoading: BOOL,
-            timer: TIMER
+            timer: TIMER,
+            cb_queue: [Function],
+            isQueuing: BOOL
         }
     }
 */
-function start() {
-    isStarting = true
-    if (query.length == 0) {
-        isStarting = false
+function start(key) {
+    var obj = cache[key]
+    obj.isQueuing = true
+    if (obj.cb_queue.length == 0) {
+        obj.isQueuing = false
         return
     }
-    get(query[0].key, (data) => {
-        query[0].callback(data)
-        query.shift()
-        start()
+    get(key, (data) => {
+        obj.cb_queue[0](data)
+        obj.cb_queue.shift()
+        start(key)
     })
 }
 exports.get = function (key, callback) {
-    query.push({
-        key: key,
-        callback: callback
-    })
-    if (!isStarting) start()
+    var obj = cache[key]
+    if (!obj.cb_queue) {
+        obj.cb_queue = []
+    }
+    obj.cb_queue.push(callback)
+    if (!obj.isQueuing) start(key)
 }
 
 function get(key, callback) {
