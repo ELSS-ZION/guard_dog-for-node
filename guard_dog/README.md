@@ -23,11 +23,13 @@ $ npm install guard_dog
 }
 ```
 
-+ handler( `data`, `expires_in`, `ahead` )
++ handler( `data`, `expires_in`, `dir`, `ahead` )
 ```
 data: Data need to store, can be string or json object.
 
 expires_in:  Unit is second, data only availability during this time.
+
+dir: specify .dog file stored directory
 
 ahead: Unit is second, defualt is 2s. It means guard_dog will refresh data 2s earlier before it expired by default.
 ```

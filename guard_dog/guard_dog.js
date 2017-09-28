@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 const extname = '.dog'
 const cache = {}
 const query = []
@@ -64,8 +65,9 @@ exports.setLoader = function (key, loader) {
     var obj = cache[key] = {}
     obj.loader = function (callback) {
         var time = new Date().getTime()
-        loader((data, expires_in, ahead) => {
+        loader((data, expires_in, dir, ahead) => {
             expires_in = typeof(expires_in)=='undefined' ? 0 : expires_in
+            dir = typeof(dir)=='undefined' ? '' : dir
             ahead = typeof(ahead)=='undefined' ? 2 : ahead
             obj.props = {
                 data: data,
@@ -73,7 +75,7 @@ exports.setLoader = function (key, loader) {
                 gen_time: time,
                 ahead: ahead
             }
-            fs.writeFileSync(key + extname, JSON.stringify(cache[key].props))
+            fs.writeFileSync(path.join(dir, key + extname), JSON.stringify(cache[key].props))
             startTimeout(obj)
             if (callback) {
                 callback()
