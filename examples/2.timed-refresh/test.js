@@ -2,18 +2,14 @@ const guard_dog = require('../../guard_dog')
 const path = require('path')
 var data = 1
 guard_dog.setLoader('ABC', (handler) => {
-    // simulate network request
+    // simulate network request responds very slow
     setTimeout(() => {
-        handler(data++, 3)
-    }, 500)
+        handler(data++, 5)
+    }, 5000)
 })
 
-guard_dog.get('ABC', (data) => {
-    console.log(data)
-})
-
-setTimeout(() => {
+setInterval(() => {
     guard_dog.get('ABC', (data) => {
-        console.log('after 5s:', data)
+        console.log(data)
     })
-}, 5000)
+}, 1000)
