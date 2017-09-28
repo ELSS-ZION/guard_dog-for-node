@@ -1,10 +1,10 @@
 const guard_dog = require('../../guard_dog')
 const path = require('path')
 var data = 1
-guard_dog.setLoader('ABC', (handler) => {
+guard_dog.init('ABC', (handler) => {
     // simulate network request
     setTimeout(() => {
-        handler(data++, 3, 'dog')
+        handler(data++, 3)
     }, 500)
 })
 

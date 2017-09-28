@@ -1,6 +1,6 @@
 {
   "name": "guard_dog",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "+ Data Persistence ( data will be save in a .dog file as json ) + Memory Cache ( guard_dog.get( ) ) + Auto Timed Refresh ( handler( ) )",
   "main": "guard_dog.js",
   "scripts": {

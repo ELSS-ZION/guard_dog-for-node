@@ -3,11 +3,11 @@ const path = require('path')
 var data = 1
 guard_dog.debug = true
 guard_dog.init('ABC', (handler) => {
-    // simulate network request responds very slow
+    // simulate network request
     setTimeout(() => {
-        handler(data++, 5)
-    }, 5000)
-})
+        handler(data++, 3)
+    }, 500)
+}, path.join(__dirname, 'dog'))
 
 setInterval(() => {
     guard_dog.get('ABC', (data) => {
