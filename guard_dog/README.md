@@ -37,7 +37,7 @@ $ npm install guard_dog
 Note: If (`expires_in` - `ahead` <= 0), it will never be refreshed.
 
 ```js
-guard_dog.setLoader('KEY', (handler) => {
+guard_dog.init('KEY', (handler) => {
     handler(data, 3) // It will be refreshed every second
 })
 ```
