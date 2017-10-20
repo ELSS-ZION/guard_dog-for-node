@@ -11,3 +11,4 @@ guard_dog.init('ABC', (handler) => {
 guard_dog.get('ABC', (data) => {
     console.log(data)
 })
+
