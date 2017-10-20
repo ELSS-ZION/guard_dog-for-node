@@ -55,7 +55,15 @@ function get(key, callback) {
     }
     if (!obj.props) {
         var str = fs.readFileSync(fileName, 'utf-8')
-        obj.props = JSON.parse(str)
+        try {
+            obj.props = JSON.parse(str)
+        } catch (error) {
+            log(key, 'file content error')
+            obj.loader(() => {
+                callback(obj.props.data)
+            })
+            return
+        }
         log(key, 'file be read')
         resetTimeout(obj)
     }
